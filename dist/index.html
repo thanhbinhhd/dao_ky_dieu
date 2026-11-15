@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff8ea">
+  <meta name="description" content="Đảo Kỳ Diệu — trò chơi học Tiếng Việt, Tiếng Anh và Toán cho bé 3–6 tuổi.">
+  <title>Đảo Kỳ Diệu — Bé học thật vui</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="sky-decor" aria-hidden="true">
+    <span class="cloud cloud-a">☁</span><span class="cloud cloud-b">☁</span><span class="sun">☀</span>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Về đầu trang">
+      <span class="brand-mark">✦</span>
+      <span><b>Đảo Kỳ Diệu</b><small>Học một chút, vui thật nhiều!</small></span>
+    </a>
+    <div class="top-stats" aria-label="Thành tích">
+      <div class="stat-pill"><span>🔥</span><b id="streakCount">1</b><small>ngày</small></div>
+      <div class="stat-pill"><span>⭐</span><b id="starCount">0</b><small>ngôi sao</small></div>
+      <button class="round-btn" id="soundToggle" aria-label="Tắt âm thanh" title="Âm thanh">🔊</button>
+      <button class="parent-btn" id="openParent"><span>👨‍👩‍👧</span> Góc ba mẹ</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-copy">
+        <p class="eyebrow">CUỘC PHIÊU LƯU NHỎ MỖI NGÀY</p>
+        <h1 id="heroTitle">Chào <span id="childName">bé con</span>!<br>Hôm nay mình khám phá gì nhỉ?</h1>
+        <p>Chọn một điểm trên bản đồ. Mỗi chặng chỉ có 5 câu hỏi thật vui thôi!</p>
+        <div class="today-card">
+          <span class="mascot">🦊</span>
+          <div><small>GỢI Ý HÔM NAY</small><b id="todayHint">Cùng Cáo Cam chinh phục level tiếp theo nhé!</b></div>
+        </div>
+      </div>
+      <div class="island-preview" aria-label="Hòn đảo hoạt hình">
+        <div class="rainbow">🌈</div>
+        <div class="floating-island">
+          <span class="tree t1">🌳</span><span class="tree t2">🌴</span><span class="house">🏡</span>
+          <span class="fox">🦊</span><span class="spark s1">✦</span><span class="spark s2">✦</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="roadmap-section" aria-labelledby="roadmapTitle">
+      <div class="section-heading">
+        <div><p class="eyebrow">BẢN ĐỒ HỌC TẬP</p><h2 id="roadmapTitle">Hành trình trên Đảo Kỳ Diệu</h2></div>
+        <div class="legend"><span><i class="dot current"></i>Đang học</span><span><i class="dot done"></i>Đã xong</span><span><i class="dot locked"></i>Chưa mở</span></div>
+      </div>
+      <div id="roadmap" class="roadmap"></div>
+    </section>
+
+    <section class="rewards" aria-labelledby="rewardTitle">
+      <div><p class="eyebrow">BỘ SƯU TẬP CỦA BÉ</p><h2 id="rewardTitle">Huy hiệu phiêu lưu</h2></div>
+      <div id="badgeShelf" class="badge-shelf"></div>
+    </section>
+  </main>
+
+  <footer><span>Made with 💛 for little explorers</span><button id="privacyInfo">Tiến trình chỉ lưu trên thiết bị này</button></footer>
+
+  <dialog id="gameDialog" class="game-dialog">
+    <div class="game-shell">
+      <div class="game-head">
+        <button class="icon-btn" id="closeGame" aria-label="Thoát level">←</button>
+        <div class="level-meta"><small id="gameWorld">VƯỜN MẦM NON</small><b id="gameLevel">Level 1</b></div>
+        <div class="question-progress" aria-label="Tiến độ câu hỏi"><div id="progressDots"></div><span id="questionCount">1/5</span></div>
+      </div>
+      <div class="progress-track"><span id="progressBar"></span></div>
+      <div class="question-card">
+        <div id="subjectTag" class="subject-tag">TIẾNG VIỆT</div>
+        <div id="questionVisual" class="question-visual" aria-hidden="true">🍎</div>
+        <div class="question-line">
+          <h2 id="questionText">Đâu là quả táo?</h2>
+          <button id="speakQuestion" class="speak-btn" aria-label="Đọc câu hỏi">🔊<span>Nghe</span></button>
+        </div>
+        <p id="questionHelper" class="question-helper">Chạm vào đáp án đúng nhé!</p>
+        <div id="answers" class="answers"></div>
+        <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="resultDialog" class="result-dialog">
+    <div class="result-card">
+      <button class="dialog-close" id="closeResult" aria-label="Đóng">×</button>
+      <div id="resultMascot" class="result-mascot">🦊</div>
+      <p class="eyebrow">HOÀN THÀNH LEVEL</p>
+      <h2 id="resultTitle">Giỏi quá!</h2>
+      <div id="resultStars" class="result-stars" aria-label="Số sao đạt được">☆☆☆</div>
+      <p id="resultMessage">Bé đã hoàn thành 5 câu hỏi!</p>
+      <div class="result-stats">
+        <div><span>✅</span><b id="correctResult">4/5</b><small>câu đúng</small></div>
+        <div><span>⏱️</span><b id="timeResult">8 giây</b><small>mỗi câu</small></div>
+        <div><span>🎁</span><b id="rewardResult">+2 sao</b><small>phần thưởng</small></div>
+      </div>
+      <div class="result-actions"><button class="secondary-btn" id="replayLevel">Chơi lại</button><button class="primary-btn" id="nextLevel">Level tiếp theo →</button></div>
+    </div>
+  </dialog>
+
+  <dialog id="parentDialog" class="parent-dialog">
+    <form method="dialog" class="parent-panel">
+      <div class="panel-head"><div><p class="eyebrow">DÀNH CHO NGƯỜI LỚN</p><h2>Góc của ba mẹ</h2></div><button class="dialog-close" value="cancel" aria-label="Đóng">×</button></div>
+      <div class="name-setting"><label for="nameInput">Tên gọi của bé</label><div><input id="nameInput" maxlength="14" placeholder="Bé con"><button type="button" id="saveName">Lưu tên</button></div></div>
+      <div class="parent-summary" id="parentSummary"></div>
+      <div class="learning-note">
+        <h3>🌱 Cách độ khó tăng dần</h3>
+        <p>Level 1–6 nhận biết hình, màu, số 1–5. Level 7–12 mở rộng số 1–10 và từ quen thuộc. Level 13–18 ghép âm, so sánh, cộng trừ trong 10. Level 19–24 có vần đơn giản, câu tiếng Anh ngắn và toán trong 20.</p>
+      </div>
+      <div class="parent-options">
+        <label><input type="checkbox" id="autoSpeak"> Tự đọc câu hỏi mới</label>
+        <button type="button" class="danger-link" id="resetProgress">Xóa toàn bộ tiến trình</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="confetti" class="confetti" aria-hidden="true"></div>
+  <script src="app.js"></script>
+</body>
+</html>
