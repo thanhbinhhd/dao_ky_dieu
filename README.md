@@ -1,5 +1,7 @@
 # Đảo Kỳ Diệu
 
+https://thanhbinhhd.github.io/dao_ky_dieu/
+
 Website tĩnh HTML/CSS/JavaScript dành cho bé 3–6 tuổi. Website không có tài khoản, không yêu cầu đăng nhập và không gửi dữ liệu lên máy chủ. Tiến trình học được lưu bằng `localStorage` trên chính trình duyệt đang chơi.
 
 ## Chạy ở máy local
