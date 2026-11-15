@@ -27,7 +27,11 @@ function loadState() {
   catch { return defaultState(); }
 }
 
-function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderHeader(); }
+function saveState() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+  catch { /* Safari private mode or disabled storage: the game remains playable for this visit. */ }
+  renderHeader();
+}
 
 function updateStreak() {
   const today = new Date();
@@ -317,7 +321,7 @@ document.getElementById("soundToggle").addEventListener("click", () => { state.s
 document.getElementById("openParent").addEventListener("click", () => { renderParent(); document.getElementById("parentDialog").showModal(); });
 document.getElementById("saveName").addEventListener("click", () => { state.name = document.getElementById("nameInput").value.trim() || "bé con"; saveState(); showToast("Đã lưu tên của bé!"); });
 document.getElementById("autoSpeak").addEventListener("change", e => { state.autoSpeak = e.target.checked; saveState(); });
-document.getElementById("resetProgress").addEventListener("click", () => { if (confirm("Ba mẹ muốn xóa toàn bộ sao, level và thành tích của bé?")) { localStorage.removeItem(STORAGE_KEY); location.reload(); } });
+document.getElementById("resetProgress").addEventListener("click", () => { if (confirm("Ba mẹ muốn xóa toàn bộ sao, level và thành tích của bé?")) { try { localStorage.removeItem(STORAGE_KEY); } catch {} location.reload(); } });
 document.getElementById("privacyInfo").addEventListener("click", () => showToast("Không cần tài khoản. Dữ liệu chỉ nằm trong trình duyệt này."));
 document.getElementById("closeGame").addEventListener("click", () => { if (confirm("Bé muốn về lại bản đồ? Level này chưa được lưu đâu nhé.")) { if ("speechSynthesis" in window) speechSynthesis.cancel(); document.getElementById("gameDialog").close(); } });
 document.getElementById("speakQuestion").addEventListener("click", () => { if (!state.sound) { state.sound = true; saveState(); } speakCurrent(); });
